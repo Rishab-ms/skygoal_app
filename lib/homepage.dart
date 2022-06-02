@@ -1,7 +1,15 @@
-import 'package:badges/badges.dart';
+// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skygoal_app/style.dart';
+import 'package:iconsax/iconsax.dart';
+import 'components/custom_appbar.dart';
+import 'components/selectable_college.dart';
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -13,64 +21,94 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var currentScreenIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(appBar: const CustomAppBar());
-  }
-}
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: IndexedStack(
+        index: currentScreenIndex,
+        children: [
+          optionsList(),
+          Center(child: Text("Saved Page 1")),
+          Center(child: Text("Saved Page 2")),
+          Center(child: Text("Profile Page")),
+        ],
+      ),
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
-    return Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Style.primaryColor,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
+//bottom nav bar to show 4 options search, saved, saved, account
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentScreenIndex,
+        onTap: (index) {
+          setState(() {
+            currentScreenIndex = index;
+          });
+        },
+        enableFeedback: true,
+        backgroundColor: Style.primaryColor,
+        type: BottomNavigationBarType.fixed,
+        // fixedColor: Style.primaryColor,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: const Color(0xffBBBBBB),
+        unselectedLabelStyle: GoogleFonts.lato(fontSize: 10),
+        selectedLabelStyle: GoogleFonts.lato(fontSize: 12),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: 'Search',
           ),
-        ),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 20),
-                Text(
-                  'Find your own way',
-                  style: GoogleFonts.lato(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
-                ),
-                // const SizedBox(height: 20),
-                const Text(
-                  'Search in 600 colleges around!',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.bookmark,
             ),
-            const SizedBox(width: 20),
-            Badge(
-              alignment: Alignment.topRight,
-              badgeColor: Colors.red,
-              child: const Icon(
-                Icons.notifications,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ));
+            label: 'Saved',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.discover5, size: 24),
+            label: 'Saved',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person, size: 24),
+            label: 'Account',
+          ),
+        ],
+      ),
+    );
   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(200);
+  optionsList() {
+    return Center(
+      child: ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        shrinkWrap: true,
+        children: const [
+          OptionContainer(
+            title: 'Top Colleges',
+            subtitle:
+                "Search through thousands of accredited colleges and universities online to find the right one for you.  Apply in 3 min, and connect with your future.",
+            trailingText: "126 Colleges",
+            assetPath: "assets/images/top_colleges.png",
+          ),
+          OptionContainer(
+            title: 'Top Schools',
+            subtitle:
+                "Searching for the best school for you just got easier! With our Advanced School Search, you can easily filter out the schools that are fit for you.",
+            trailingText: "106 Schools",
+            assetPath: "assets/images/top_schools.png",
+          ),
+          OptionContainer(
+            title: 'Exams',
+            subtitle:
+                "Find an end to end information about the exams that are happening in India",
+            trailingText: "126 Colleges",
+            assetPath: "assets/images/exams.png",
+          ),
+        ],
+      ),
+    );
+  }
 }
+
+
