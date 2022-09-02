@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:skygoal_app/global.dart';
 import 'package:skygoal_app/style.dart';
 import 'package:iconsax/iconsax.dart';
 import 'components/custom_appbar.dart';
 import 'components/selectable_college.dart';
-
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -29,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: IndexedStack(
         index: currentScreenIndex,
         children: [
-          optionsList(),
+          globals.homepage ? optionsList() : collegeList(),
           Center(child: Text("Saved Page 1")),
           Center(child: Text("Saved Page 2")),
           Center(child: Text("Profile Page")),
@@ -109,6 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  collegeList() {
+    return Column(
+      children: [],
+    );
+  }
 }
-
-

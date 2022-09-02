@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:skygoal_app/global.dart';
 
 import '../style.dart';
 
@@ -22,6 +23,7 @@ class OptionContainer extends StatefulWidget {
   @override
   State<OptionContainer> createState() => _OptionContainerState();
 }
+
 enum _Colleges {
   Bachelor_of_technology,
   Bachelor_of_architecture,
@@ -31,6 +33,7 @@ enum _Colleges {
 }
 
 _Colleges selectedCollege = _Colleges.Bachelor_of_technology;
+
 class _OptionContainerState extends State<OptionContainer> {
   @override
   Widget build(BuildContext context) {
@@ -236,7 +239,7 @@ class _OptionContainerState extends State<OptionContainer> {
                     onChanged: (value) {
                       setState(() {
                         selectedCollege = _Colleges.Bachelor_of_architecture;
-                   
+                        globals.homepage = false;
                       });
                       setModalState(() {});
                       Navigator.pop(context);
