@@ -1,16 +1,6 @@
-# skygoal_app
+# SkyGoal Internship Task
 
-A new Flutter project.
+###### This is a UI Chalenge as part of the Flutter internship opportunity by the company sky goal. 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshot 
+![Screenshot_20220602-214142](https://user-images.githubusercontent.com/55798225/188103526-574cd430-d1be-4233-ac64-9682701d3637.jpg)
